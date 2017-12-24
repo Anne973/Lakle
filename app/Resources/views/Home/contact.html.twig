@@ -1,0 +1,74 @@
+{% extends "base.html.twig" %}
+{% block content %}
+    <div class="fh5co-page-title" style="background-image: url({{ asset('images/slide_3.jpg') }});">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 animate-box">
+                    <h1><span class="colored">Contactez</span> Nous</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="fh5co-contact animate-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h3>Contact Info.</h3>
+                    <ul class="contact-info">
+                        <li><i class="icon-map"></i>8, avenue Gustave Charlery 97300 Cayenne</li>
+                        <li><i class="icon-phone"></i>05 94 28 48 69</li>
+                        <li><i class="icon-fax"></i>05 94 28 48 70</li>
+                        <li><i class="icon-globe"></i><a href="#">www.lakle.com</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-8 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Nom" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Email" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input value="Envoyer" class="btn btn-primary" type="submit">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="map" class="animate-box" data-animate-effect="fadeIn"></div>
+{% endblock %}
+{% block javascripts %}
+    <!-- jQuery -->
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <!-- jQuery Easing -->
+    <script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <!-- Waypoints -->
+    <script src="{{ asset('js/jquery.waypoints.min.js') }}"></script>
+    <!-- Flexslider -->
+    <script src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
+    <!-- Google Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
+    <script src="{{ asset('js/google_map.js') }}"></script>
+    <!-- MAIN JS -->
+    <script src="{{ asset('js/main.js') }}"></script>
+
+{% endblock %}
