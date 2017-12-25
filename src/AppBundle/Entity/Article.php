@@ -42,7 +42,12 @@ class Article
      */
     private $content;
 
+    public function __construct()
+    {
+        $this->date = new \Datetime();
 
+
+    }
     /**
      * Get id
      *
