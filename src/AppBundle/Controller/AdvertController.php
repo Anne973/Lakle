@@ -11,7 +11,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class HousingController extends Controller
+class AdvertController extends Controller
 {
     /**
      * @Route("/nos_logements", name="nos_logements")
@@ -19,7 +19,7 @@ class HousingController extends Controller
     public function housingAction()
     {
 
-        return $this->render('Housing/housing_supply.html.twig');
+        return $this->render('Advert/housing_supply.html.twig');
 
     }
 }
