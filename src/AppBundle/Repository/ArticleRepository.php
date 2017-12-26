@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use Doctrine\ORM\Tools\Pagination\Paginator;
+
 /**
  * ArticleRepository
  *
@@ -10,4 +12,23 @@ namespace AppBundle\Repository;
  */
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getArticles($page, $nbPerPage)
+    {
+
+        $queryBuilder = $this->createQueryBuilder('a');
+
+        $query = $queryBuilder->getQuery();
+        $query
+            // On définit l'annonce à partir de laquelle commencer la liste
+            ->setFirstResult(($page-1) * $nbPerPage)
+            // Ainsi que le nombre d'annonce à afficher sur une page
+            ->setMaxResults($nbPerPage)
+        ;
+
+        // Enfin, on retourne l'objet Paginator correspondant à la requête construite
+        // (n'oubliez pas le use correspondant en début de fichier)
+        return new Paginator($query, true);
+
+
+    }
 }

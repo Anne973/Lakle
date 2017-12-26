@@ -42,6 +42,8 @@ class Article
      */
     private $content;
 
+
+
     public function __construct()
     {
         $this->date = new \Datetime();
@@ -128,6 +130,21 @@ class Article
     public function getContent()
     {
         return $this->content;
+    }
+
+
+    public function getLimitedText() {
+        $description=$this->getContent();
+
+        $lg_max = 200; // nombre de caractère autorisé
+        $description = strip_tags($description); // On retire toutes les balises
+        if (strlen($description) > $lg_max) {
+            $description = substr($description, 0, $lg_max) ;
+            $last_space = strrpos($description, " ") ;
+            $description = substr($description, 0, $last_space)."..." ;
+        }
+
+        return $description ;
     }
 }
 

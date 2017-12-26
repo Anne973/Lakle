@@ -3,63 +3,20 @@
     <aside id="fh5co-hero" class="js-fullheight">
         <div class="flexslider js-fullheight">
             <ul class="slides">
-                <li style="background-image: url({{ asset('images/slide_1.jpg') }});">
+                <li style="background-image: url({{ asset('images/photo_home.jpeg') }});">
                     <div class="container">
                         <div class="col-md-12 text-center js-fullheight fh5co-property-brief slider-text">
                             <div class="fh5co-property-brief-inner">
                                 <div class="fh5co-box">
 
-                                    <h3><a href="#">Villa In Hialeah, Dade County</a></h3>
-                                    <div class="price-status">
-                                        <span class="price">$540,000 <a href="#" class="tag">For Sale</a></span>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dicta magni amet atque doloremque velit unde adipisci omnis hic quaerat.</p>
+                                    <h3><a href="#">Vous êtes propriétaire?</a></h3>
+                                    <p>Valorisez votre patrimoine immobilier</p>
+                                    <p><a href="#" class="btn btn-primary">En savoir plus</a></p>
 
-                                    <p class="fh5co-property-specification">
-                                        <span><strong>3500</strong> Sq Ft</span>  <span><strong>3</strong> Beds</span>  <span><strong>3.5</strong> Baths</span>  <span><strong>2</strong> Garages</span>
-                                    </p>
+                                    <h3><a href="#">Vous éprouvez des difficultés pour vous loger?</a></h3>
+                                    <p>Nous pouvons peut-être vous aider</p>
+                                    <p><a href="#" class="btn btn-primary">En savoir plus</a></p>
 
-                                    <p><a href="#" class="btn btn-primary">Learn more</a></p>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li style="background-image: url({{ asset('images/slide_2.jpg') }});" >
-                    <div class="container">
-                        <div class="col-md-12 text-center js-fullheight fh5co-property-brief slider-text">
-                            <div class="fh5co-property-brief-inner">
-                                <div class="fh5co-box">
-                                    <h3><a href="#">15 Apartments Of Type B</a></h3>
-                                    <div class="price-status">
-                                        <span class="price">$2,200<span class="per">/Month</span> <a href="#" class="tag">For Rent</a></span>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dicta magni amet atque doloremque velit unde adipisci omnis hic quaerat.</p>
-                                    <p class="fh5co-property-specification">
-                                        <span><strong>3500</strong> Sq Ft</span>  <span><strong>3</strong> Beds</span>  <span><strong>3.5</strong> Baths</span>  <span><strong>2</strong> Garages</span>
-                                    </p>
-                                    <p><a href="#" class="btn btn-primary">Learn more</a></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li style="background-image: url({{ asset('images/slide_3.jpg') }});" >
-                    <div class="container">
-                        <div class="col-md-12 text-center js-fullheight fh5co-property-brief slider-text">
-                            <div class="fh5co-property-brief-inner">
-                                <div class="fh5co-box">
-                                    <h3><a href="#">401 Biscayne Boulevard, Miami</a></h3>
-                                    <div class="price-status">
-                                        <span class="price">$1,540,000 <a href="#" class="tag">For Sale</a></span>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dicta magni amet atque doloremque velit unde adipisci omnis hic quaerat.</p>
-                                    <p class="fh5co-property-specification">
-                                        <span><strong>3500</strong> Sq Ft</span>  <span><strong>3</strong> Beds</span>  <span><strong>3.5</strong> Baths</span>  <span><strong>2</strong> Garages</span>
-                                    </p>
-                                    <p><a href="#" class="btn btn-primary">Learn more</a></p>
 
 
                                 </div>
@@ -169,8 +126,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
-                    <h2>Happy Clients</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                    <h2>Témoignages</h2>
+
                 </div>
                 <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
                     <blockquote>
@@ -203,51 +160,27 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
-                    <h2>Latest <em>from</em> Blog</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                    <h2>Dernières actualités</h2>
+
                 </div>
             </div>
         </div>
         <div class="container">
             <div class="row">
+                {% for article in lastArticles %}
                 <div class="col-md-4 animate-box" data-animate-effect="fadeIn">
-                    <a class="fh5co-entry" href="#">
-                        <figure>
-                            <img src="{{ asset('images/slide_4.jpg') }}" alt="Free Website Template, Free HTML5 Bootstrap Template" class="img-responsive">
-                        </figure>
+                    <a class="fh5co-entry" href="{{ path ('article', {'id': article.id}) }}">
+
                         <div class="fh5co-copy">
-                            <h3>We Create Awesome Free Templates</h3>
-                            <span class="fh5co-date">June 8, 2016</span>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                            <h3>{{ article.title }}</h3>
+                            <span class="fh5co-date">{{ article.date|date('d/m/Y') }}</span>
+                            <p>{{ article.limitedText }}</p>
                         </div>
                     </a>
                 </div>
-                <div class="col-md-4 animate-box" data-animate-effect="fadeIn">
-                    <a class="fh5co-entry" href="#">
-                        <figure>
-                            <img src="{{ asset('images/slide_5.jpg') }}" alt="Free Website Template, Free HTML5 Bootstrap Template" class="img-responsive">
-                        </figure>
-                        <div class="fh5co-copy">
-                            <h3>Handcrafted Using CSS3 &amp; HTML5</h3>
-                            <span class="fh5co-date">June 8, 2016</span>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4 animate-box" data-animate-effect="fadeIn">
-                    <a class="fh5co-entry" href="#">
-                        <figure>
-                            <img src="{{ asset('images/slide_6.jpg') }}" alt="Free Website Template, Free HTML5 Bootstrap Template" class="img-responsive">
-                        </figure>
-                        <div class="fh5co-copy">
-                            <h3>We Try To Update The Site Everyday</h3>
-                            <span class="fh5co-date">June 8, 2016</span>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                        </div>
-                    </a>
-                </div>
+                {% endfor %}
                 <div class="col-md-12 text-center animate-box" data-animate-effect="fadeIn">
-                    <p><a href="#" class="btn btn-primary btn-outline with-arrow">View More Posts <i class="icon-arrow-right"></i></a></p>
+                    <p><a href="{{ path('actualites') }}" class="btn btn-primary btn-outline with-arrow">Voir toutes les actualités <i class="icon-arrow-right"></i></a></p>
                 </div>
             </div>
         </div>

@@ -15,8 +15,29 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:Article');
+        $lastArticles =
+            $repository->findBy(
+                array(), // Critere
+                array('date' => 'desc'),        // Tri
+                3,                              // Limite
+                0                            // Offset
+            );
 
-        return $this->render('Home/index.html.twig');
+        return $this->render('Home/index.html.twig', array('lastArticles'=>$lastArticles));
+
+    }
+
+    /**
+     * @Route("/association", name="association")
+     */
+    public function associationAction()
+    {
+
+        return $this->render('Home/association.html.twig');
 
     }
 
