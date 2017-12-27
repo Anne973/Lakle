@@ -73,6 +73,24 @@ easy_admin:
     entities:
         Advert:
             class: AppBundle\Entity\Advert
+            label: 'Offres de logement'
         Article:
             class:  AppBundle\Entity\Article
+            label: 'Articles'
+            help: 'Traitement en cours'
+            form:
+                title : "Nouvel article"
+                form_options: { validation_groups: ['Default'] }
+                fields:
+
+                - { property: 'date', label: 'Date'}
+                - { property: 'title', label: 'Titre'}
+                - { property: 'content', type: 'ckeditor', label: 'Article' }
+            new:
+                form_options: { validation_groups: ['Default', 'Article'] }
+
+
+            edit:
+                title: " Article # %%entity_id%%"
+
 
