@@ -7,10 +7,11 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    app.path.advert_images: /uploads/images/adverts
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -68,16 +69,78 @@ swiftmailer:
 
 # easyadmin Configuration
 easy_admin:
+    design:
+
     site_name: 'Lakle Admin'
+
+
+    formats:
+        datetime: 'd/m/Y'
+    list:
+        actions:
+            - {name: 'edit', icon: 'pencil', label: 'Edit'}
+            - {name: 'delete', icon: 'trash', label: 'Delete'}
+            - {name: 'search', icon: 'search', label: 'Search'}
+            - {name: 'new', icon: 'plus', label: 'New'}
+
+
+
 
     entities:
         Advert:
             class: AppBundle\Entity\Advert
             label: 'Offres de logement'
+            list:
+                title: 'Offres de logement'
+                fields:
+                    - id
+                    - { property: 'type', label: 'Type'}
+                    - { property: 'price', label: 'Prix'}
+                    - { property: 'address', label: 'Commune'}
+                    - { property: 'images', type: 'string', base_path: '%app.path.advert_images%' }
+            show:
+                fields:
+                    - id
+                    - { property: 'type', label: 'Type'}
+                    - { property: 'price', label: 'Prix'}
+                    - { property: 'address', label: 'Commune'}
+                   # - { property: 'images', type: 'image', base_path: '%app.path.advert_images%' }
+
+            form:
+                title: Nouvelle annonce
+                form_options: { validation_groups: ['Default'] }
+                fields:
+
+                    - { property: 'type', label: 'Type'}
+                    - { property: 'price', label: 'Prix'}
+                    - { property: 'address', label: 'Commune'}
+                    - { property: 'content', type: 'ckeditor',label: 'Annonce'}
+                    - { property: 'images', type: 'collection', type_options: { entry_type: 'AppBundle\Form\ImageType', by_reference: false}}
+
+            new :
+                form-options : { validation_groups: ['Default', 'Advert'] }
+
+
+            edit:
+                title : " Annonce # %%entity_id%%"
+
+                actions :
+                    - {name: 'delete', icon: 'trash', label: 'Delete'}
+                    - {name: 'list', label: 'Back to the list'}
+
+
+
         Article:
             class:  AppBundle\Entity\Article
             label: 'Articles'
-            help: 'Traitement en cours'
+            list:
+                title: 'Articles'
+                fields:
+                    - id
+                    - { property: 'date', label: 'Date'}
+                    - { property: 'title', label: 'Titre'}
+
+
             form:
                 title : "Nouvel article"
                 form_options: { validation_groups: ['Default'] }
@@ -90,7 +153,20 @@ easy_admin:
                 form_options: { validation_groups: ['Default', 'Article'] }
 
 
+
+
             edit:
                 title: " Article # %%entity_id%%"
+                actions:
+                    - {name: 'delete', icon: 'trash', label: 'Delete'}
+                    - {name: 'list', label: 'Back to the list'}
 
 
+# vich_uploader Configuration
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        advert_images:
+            uri_prefix:         '%app.path.advert_images%'
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/adverts'

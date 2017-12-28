@@ -2,6 +2,9 @@
 
 namespace AppBundle\Entity;
 
+
+
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,9 +53,16 @@ class Advert
     private $address;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="advert")
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="advert", cascade={"persist"})
+     * @Assert\Count(
+     *     min=1,
+     *     max=5,
+     *     minMessage = "Vous devez enregistrer au moins une photo",
+     *     maxMessage = "Vous ne pouvez enregistrer plus de 5 photos"
+     *     )
      */
     private $images;
+
 
 
     /**
