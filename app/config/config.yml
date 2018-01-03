@@ -7,7 +7,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    app.path.advert_images: /uploads/images/adverts
+    app.path.advert_images: /uploads/adverts/images
 
 framework:
     #esi: ~
@@ -82,6 +82,8 @@ easy_admin:
             - {name: 'delete', icon: 'trash', label: 'Delete'}
             - {name: 'search', icon: 'search', label: 'Search'}
             - {name: 'new', icon: 'plus', label: 'New'}
+            - {name: 'show', icon: 'eye', label: 'Show'}
+
 
 
 
@@ -97,24 +99,30 @@ easy_admin:
                     - { property: 'type', label: 'Type'}
                     - { property: 'price', label: 'Prix'}
                     - { property: 'address', label: 'Commune'}
-                    - { property: 'images', type: 'string', base_path: '%app.path.advert_images%' }
+                    - { property: 'firstImage', type: 'image', base_path: '%app.path.advert_images%' }
+
             show:
+                title: 'Annonce (#%%entity_id%%)'
                 fields:
-                    - id
+
                     - { property: 'type', label: 'Type'}
                     - { property: 'price', label: 'Prix'}
                     - { property: 'address', label: 'Commune'}
-                   # - { property: 'images', type: 'image', base_path: '%app.path.advert_images%' }
+                    - { property: 'content',label: 'Annonce'}
+                    - { property: 'images', template: 'vich_uploader_image.html.twig' }
+
 
             form:
                 title: Nouvelle annonce
                 form_options: { validation_groups: ['Default'] }
                 fields:
-
+                    - { type: 'group', label: 'Informations', icon:'info-circle' }
                     - { property: 'type', label: 'Type'}
                     - { property: 'price', label: 'Prix'}
                     - { property: 'address', label: 'Commune'}
                     - { property: 'content', type: 'ckeditor',label: 'Annonce'}
+                    - { type: 'group', label: 'Photographies', icon: 'camera', help: '5 photos maximum' }
+
                     - { property: 'images', type: 'collection', type_options: { entry_type: 'AppBundle\Form\ImageType', by_reference: false}}
 
             new :
@@ -122,7 +130,8 @@ easy_admin:
 
 
             edit:
-                title : " Annonce # %%entity_id%%"
+                title : " Annonce (#%%entity_id%%)"
+
 
                 actions :
                     - {name: 'delete', icon: 'trash', label: 'Delete'}
@@ -140,6 +149,12 @@ easy_admin:
                     - { property: 'date', label: 'Date'}
                     - { property: 'title', label: 'Titre'}
 
+            show:
+                title : 'Article (#%%entity_id%%)'
+                fields:
+                    - { property: 'date', label: 'Date'}
+                    - { property: 'title', label: 'Titre'}
+                    - { property: 'content', label: 'Article'}
 
             form:
                 title : "Nouvel article"
@@ -156,7 +171,8 @@ easy_admin:
 
 
             edit:
-                title: " Article # %%entity_id%%"
+                title: " Article (#%%entity_id%%)"
+                form_options: { validation_groups: ['Default', 'Article'] }
                 actions:
                     - {name: 'delete', icon: 'trash', label: 'Delete'}
                     - {name: 'list', label: 'Back to the list'}
@@ -169,4 +185,4 @@ vich_uploader:
     mappings:
         advert_images:
             uri_prefix:         '%app.path.advert_images%'
-            upload_destination: '%kernel.root_dir%/../web/uploads/images/adverts'
+            upload_destination: '%kernel.root_dir%/../web/uploads/adverts/images'

@@ -147,6 +147,20 @@ class Advert
         return $this->content;
     }
 
+    public function getLimitedText() {
+        $description=$this->getContent();
+
+        $lg_max = 200; // nombre de caractère autorisé
+        $description = strip_tags($description); // On retire toutes les balises
+        if (strlen($description) > $lg_max) {
+            $description = substr($description, 0, $lg_max) ;
+            $last_space = strrpos($description, " ") ;
+            $description = substr($description, 0, $last_space)." [...]" ;
+        }
+
+        return $description ;
+    }
+
     /**
      * Set address
      *
@@ -213,5 +227,11 @@ class Advert
     public function getImages()
     {
         return $this->images;
+    }
+
+
+    public function getFirstImage(){
+        $first = $this->images->first();
+        return ($first)? $first->getImage(): "";
     }
 }

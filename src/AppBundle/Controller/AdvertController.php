@@ -16,10 +16,30 @@ class AdvertController extends Controller
     /**
      * @Route("/nos_logements", name="nos_logements")
      */
-    public function housingAction()
+    public function indexAction()
     {
+        $repository=$this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:Advert');
+        $adverts=$repository->findAll();
 
-        return $this->render('Advert/housing_supply.html.twig');
+        return $this->render('Advert/index.html.twig', array('adverts'=>$adverts));
 
+    }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/advert/{id}", name="advert")
+     */
+
+    public function advertAction($id)
+    {
+        $repository = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:Advert');
+        $advert = $repository->find($id);
+        return $this->render('Advert/advert.html.twig', array('advert' => $advert));
     }
 }
