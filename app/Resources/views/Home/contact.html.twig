@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 animate-box">
-                    <h1><span class="colored">Contactez</span> Nous</h1>
+                    <h1><span class="colored">Contactez</span> nous</h1>
                 </div>
             </div>
         </div>
@@ -25,28 +25,37 @@
                     </ul>
                 </div>
                 <div class="col-md-8 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Nom" type="text">
+                    {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    {{ form_errors(form.name) }}
+                                    {{ form_widget(form.name,{'attr': {'placeholder':'Nom', 'class':'form-control' }}) }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    {{ form_errors(form.email) }}
+                                    {{ form_widget(form.email,{'attr': {'placeholder': 'Email', 'class':'form-control'}})}}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+
+                                    {{ form_errors(form.message) }}
+                                    {{ form_widget(form.message, {'attr': {'placeholder': 'Message','class':'form-control', 'rows':'7'}}) }}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input value="Envoyer" class="btn btn-primary" type="submit">
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Email" type="text">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <input value="Envoyer" class="btn btn-primary" type="submit">
-                            </div>
-                        </div>
-                    </div>
+                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
@@ -55,20 +64,24 @@
     <div id="map" class="animate-box" data-animate-effect="fadeIn"></div>
 {% endblock %}
 {% block javascripts %}
-    <!-- jQuery -->
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <!-- jQuery Easing -->
-    <script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
-    <!-- Bootstrap -->
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <!-- Waypoints -->
-    <script src="{{ asset('js/jquery.waypoints.min.js') }}"></script>
-    <!-- Flexslider -->
-    <script src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
+
     <!-- Google Map -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
-    <script src="{{ asset('js/google_map.js') }}"></script>
-    <!-- MAIN JS -->
-    <script src="{{ asset('js/main.js') }}"></script>
+    <script>
+        function initMap() {
+            var lakle = {lat: 4.940988, lng: -52.31750999999997};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: lakle
+            });
+            var marker = new google.maps.Marker({
+                position: lakle,
+                map: map
+            });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrQL_c6RoayVkQDzIqsJBwlhbc9UrzmBM&callback=initMap"></script>
+
+
 
 {% endblock %}

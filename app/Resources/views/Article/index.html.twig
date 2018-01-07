@@ -5,74 +5,67 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 animate-box">
-                    <h1><span class="colored">Toutes</span> Nos actualités</h1>
+                    <h1><span class="colored">Toutes</span> nos actualités</h1>
                 </div>
             </div>
         </div>
     </div>
-    <div id="best-deal">
+    <div id="fh5co-blog">
         <div class="container">
+
             <div class="row">
+                {% for article in listArticles %}
 
+                    <div class="col-md-4 animate-box" data-animate-effect="fadeIn">
+                        <div class="fh5co-entry">
 
-                <div class="col-md-8 col-md-offset-2 item-block animate-box" data-animate-effect="fadeIn">
+                        <div class="fh5co-copy">
+                            <h3>{{ article.title }}</h3>
+                            <span class="fh5co-date">{{ article.date|date('d/m/Y') }}</span>
+                            <p>{{ article.limitedText }}</p>
+                            <p><a href="{{ path ('article', {'id': article.id}) }}" class="btn btn-primary">Voir
+                                    plus</a></p>
+                        </div>
+                        </div>
+                    </div>
+                {% endfor %}
 
-                    {% for article in listArticles %}
-                        <h1>{{ article.title }}</h1>
-                        <h2>{{ article.date|date('d/m/Y') }}</h2>
-                        <p>{{ article.limitedText }}</p>
-                        <p><a href="{{ path ('article', {'id': article.id}) }}" class="btn btn-primary">Voir plus</a></p>
-                        <hr>
-                    {% endfor %}
-
-
-                </div>
 
             </div>
 
 
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center animate-box" data-animate-effect="fadeIn">
-                <nav>
-                    <ul class="pagination">
-                        <li class="disabled">
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        {% for p in range(1, nbPages) %}
-                            <li{% if p == page %} class="active"{% endif %}>
-                                <a href="{{ path('actualites', {'page': p}) }}">{{ p }}</a>
+            <div class="row">
+                <div class="col-md-12 text-center animate-box" data-animate-effect="fadeIn">
+                    <nav>
+                        <ul class="pagination">
+                            {% if page>1 %}
+                                <li>
+                                    <a href="{{ path('actualites', {'page': page-1}) }}" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% for p in range(1, nbPages) %}
+                                <li{% if p == page %} class="active"{% endif %}>
+                                    <a href="{{ path('actualites', {'page': p}) }}">{{ p }}</a>
+                                </li>
+                            {% endfor %}
+                            <li>
+                                {% if page< nbPages %}
+                                    <a href="{{ path('actualites', {'page': page+1}) }}" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                {% endif %}
                             </li>
-                        {% endfor %}
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
+
     </div>
-
-
 
 {% endblock %}
     {% block javascripts %}
-        <!-- jQuery -->
-        <script src="{{ asset('js/jquery.min.js') }}"></script>
-        <!-- jQuery Easing -->
-        <script src="{{ asset('js/jquery.easing.1.3.js') }}"></script>
-        <!-- Bootstrap -->
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-        <!-- Waypoints -->
-        <script src="{{ asset('js/jquery.waypoints.min.js') }}"></script>
-        <!-- Flexslider -->
-        <script src="{{ asset('js/jquery.flexslider-min.js') }}"></script>
-
-        <!-- MAIN JS -->
-        <script src="{{ asset('js/main.js') }}"></script>
 
     {% endblock %}
