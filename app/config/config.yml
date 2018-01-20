@@ -117,7 +117,7 @@ easy_admin:
                 title: Nouvelle annonce
                 form_options: { validation_groups: ['Default'] }
                 fields:
-                    - { type: 'group', label: 'Informations', icon:'info-circle' }
+                    - { type: 'group', label: 'Informations', icon: 'info-circle' }
                     - { property: 'type', label: 'Type'}
                     - { property: 'price', label: 'Prix'}
                     - { property: 'address', label: 'Commune'}

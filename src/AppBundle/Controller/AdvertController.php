@@ -8,38 +8,33 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Advert;
+use AppBundle\Repository\AdvertRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AdvertController extends Controller
 {
     /**
-     * @Route("/nos_logements", name="nos_logements")
+     * @Route("/nos-logements", name="nos-logements")
+     * @param AdvertRepository $advertRepository
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction()
+    public function indexAction(AdvertRepository $advertRepository)
     {
-        $repository=$this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Advert');
-        $adverts=$repository->findAll();
+        $adverts=$advertRepository->findAll();
 
         return $this->render('Advert/index.html.twig', array('adverts'=>$adverts));
 
     }
 
     /**
+     * @param Advert $advert
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/advert/{id}", name="advert")
      */
-
-    public function advertAction($id)
+    public function advertAction(Advert $advert)
     {
-        $repository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Advert');
-        $advert = $repository->find($id);
         return $this->render('Advert/advert.html.twig', array('advert' => $advert));
     }
 }

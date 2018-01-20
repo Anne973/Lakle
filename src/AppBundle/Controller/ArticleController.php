@@ -10,6 +10,8 @@ namespace AppBundle\Controller;
 
 
 use AppBundle\AppBundle;
+use AppBundle\Entity\Article;
+use AppBundle\Repository\ArticleRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,20 +23,16 @@ class ArticleController extends Controller
      * @Route("/actus/{page}", name="actualites")
      */
 
-    public function indexAction($page = 1)
+    public function indexAction($page = 1, ArticleRepository $articleRepository)
     {
-
 
         if ($page < 1) {
             throw $this->createNotFoundException("La page " . $page . " n'existe pas.");
         }
 
-        $nbPerPage = 2;
+        $nbPerPage = Article::ARTICLES_PER_PAGE;
 
-        $listArticles = $this->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Article')
-            ->getArticles($page, $nbPerPage);
+        $listArticles = $articleRepository->getArticles($page, $nbPerPage);
 
         $nbPages = ceil(count($listArticles) / $nbPerPage);
 
@@ -46,18 +44,12 @@ class ArticleController extends Controller
     }
 
     /**
+     * @param Article $article
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/article/{id}", name="article")
      */
-
-    public function articleAction($id)
+    public function articleAction(Article $article)
     {
-
-        $repository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Article');
-        $article = $repository->find($id);
         return $this->render('Article/article.html.twig', array('article' => $article));
 
     }

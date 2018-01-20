@@ -12,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Article
 {
+    const ARTICLES_IN_HOMEPAGE = 3;
+    const ARTICLES_PER_PAGE = 2;
+
     /**
      * @var int
      *

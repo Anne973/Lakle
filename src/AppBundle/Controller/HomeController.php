@@ -3,10 +3,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\ContactType;
+use AppBundle\Repository\ArticleRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+
+
 
 
 class HomeController extends Controller
@@ -14,19 +16,9 @@ class HomeController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction()
+    public function indexAction(ArticleRepository $articleRepository)
     {
-        $repository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository('AppBundle:Article');
-        $lastArticles =
-            $repository->findBy(
-                array(), // Critere
-                array('date' => 'desc'),        // Tri
-                3,                              // Limite
-                0                            // Offset
-            );
+        $lastArticles = $articleRepository->getArticlesInHomepage();
 
         return $this->render('Home/index.html.twig', array('lastArticles' => $lastArticles));
 
@@ -45,7 +37,7 @@ class HomeController extends Controller
     /**
      * @Route("/contact", name="contact")
      */
-    public function contactAction(Request $request)
+    public function contactAction(Request $request, \Swift_Mailer $mailer)
     {
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
@@ -64,7 +56,7 @@ class HomeController extends Controller
                     ),
                     'text/html'
                 );
-            $this->get('mailer')->send($message);
+            $mailer->send($message);
             return $this->redirectToRoute('confirmation');
         }
         return $this->render('Home/contact.html.twig', array('form'=>$form->createView()));
