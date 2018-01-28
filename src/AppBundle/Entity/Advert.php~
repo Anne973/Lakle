@@ -2,6 +2,9 @@
 
 namespace AppBundle\Entity;
 
+
+
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +39,20 @@ class Advert
     private $price;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="charges", type="integer")
+     */
+    private $charges;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="fees", type="integer")
+     */
+    private $fees;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="content", type="text")
@@ -50,9 +67,16 @@ class Advert
     private $address;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="advert")
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="advert", cascade={"persist"})
+     * @Assert\Count(
+     *     min=1,
+     *     max=5,
+     *     minMessage = "Vous devez enregistrer au moins une photo",
+     *     maxMessage = "Vous ne pouvez enregistrer plus de 5 photos"
+     *     )
      */
     private $images;
+
 
 
     /**
@@ -137,6 +161,20 @@ class Advert
         return $this->content;
     }
 
+    public function getLimitedText() {
+        $description=$this->getContent();
+
+        $lg_max = 200; // nombre de caractère autorisé
+        $description = strip_tags($description); // On retire toutes les balises
+        if (strlen($description) > $lg_max) {
+            $description = substr($description, 0, $lg_max) ;
+            $last_space = strrpos($description, " ") ;
+            $description = substr($description, 0, $last_space)." [...]" ;
+        }
+
+        return $description ;
+    }
+
     /**
      * Set address
      *
@@ -161,28 +199,53 @@ class Advert
         return $this->address;
     }
 
+
     /**
-     * Set photo
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add image
      *
-     * @param string $photo
+     * @param \AppBundle\Entity\Image $image
      *
      * @return Advert
      */
-    public function setPhoto($photo)
+    public function addImage(\AppBundle\Entity\Image $image)
     {
-        $this->photo = $photo;
+        $this->images[] = $image;
+        $image->setAdvert($this);
 
         return $this;
     }
 
     /**
-     * Get photo
+     * Remove image
      *
-     * @return string
+     * @param \AppBundle\Entity\Image $image
      */
-    public function getPhoto()
+    public function removeImage(\AppBundle\Entity\Image $image)
     {
-        return $this->photo;
+        $this->images->removeElement($image);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+
+    public function getFirstImage(){
+        $first = $this->images->first();
+        return ($first)? $first->getImage(): "";
     }
 }
-

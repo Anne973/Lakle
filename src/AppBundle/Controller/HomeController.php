@@ -3,12 +3,13 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Form\ContactType;
+use AppBundle\Form\OwnerType;
 use AppBundle\Repository\ArticleRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Swift_Attachment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
-
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 
 class HomeController extends Controller
@@ -59,7 +60,7 @@ class HomeController extends Controller
             $mailer->send($message);
             return $this->redirectToRoute('confirmation');
         }
-        return $this->render('Home/contact.html.twig', array('form'=>$form->createView()));
+        return $this->render('Home/contact.html.twig', array('form' => $form->createView()));
 
     }
 
@@ -72,13 +73,57 @@ class HomeController extends Controller
     }
 
 
-
     /**
      * @Route("/proprietaires", name="proprietaires")
      */
     public function ownersAction()
     {
         return $this->render('Home/owners.html.twig');
+    }
+
+    /**
+     * @Route("/formulaire", name="formulaire")
+     */
+    public function ownersFormAction(Request $request, \Swift_Mailer $mailer)
+    {
+        $form = $this->createForm(OwnerType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $message = (new \Swift_Message('Demande de mise en gestion'))
+                ->setFrom($data['email'])
+                ->setTo($this->getParameter('mailer_user'))
+                ->setBody(
+                    $this->renderView(
+
+                        'Emails/owners.html.twig',
+                        array('data' => $data)
+
+                    ),
+                    'text/html'
+                );
+            foreach ($data['attachments'] as $attachment) {
+                $swiftAtt = \Swift_Attachment::fromPath($attachment->getRealPath())
+                    ->setFilename($attachment->getClientOriginalName());
+                $message->attach($swiftAtt);
+            }
+            $mailer->send($message);
+
+            return $this->redirectToRoute('confirmation');
+
+        }
+        return $this->render('Home/ownersForm.html.twig', array('form' => $form->createView()));
+
+    }
+    /**
+     * @Route("/download", name="download")
+     */
+    public function downloadAction()
+    {
+        $pdfPath = $this->getParameter('dir.downloads').'/formulaire.pdf';
+
+        return $this->file($pdfPath, 'dossier-demande-logement',ResponseHeaderBag::DISPOSITION_INLINE);
     }
 
     /**
@@ -89,4 +134,6 @@ class HomeController extends Controller
     {
         return $this->render('Home/tenants.html.twig');
     }
+
+
 }

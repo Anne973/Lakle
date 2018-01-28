@@ -13,97 +13,99 @@
     <div id="best-deal">
         <div class="container">
             <div class="row">
-
-
-                <div class="col-md-8 col-md-offset-2 item-block animate-box" data-animate-effect="fadeIn">
-                    <h2>Quel type de biens intéresse l'AIVS LAKLE?</h2>
-                    Tout bien immobilier destiné au logement situé en Guyane.<br>
-                    LAKLE gère pour le compte des propriétaires:
+                <div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn" style="padding: 10px; border: 2px solid #4CB648; border-radius: 10px ">
+                   <h4>Vous souhaitez nous confier la gestion de votre bien?</h4>
+                    <p>Liste des pièces à fournir</p>
                     <ul>
-                        <li>les studios</li>
-                        <li>les appartements</li>
-                        <li>les maisons unifamiliales</li>
+                        <li>Pièce d'identité</li>
+                        <li>Titre de propriété</li>
+                        <li>Relevé d'identité bancaire</li>
+                        <li>Engagement du bailleur signé avec l'Anah (le cas échéant)</li>
                     </ul>
+                    <button class="btn btn-default"><a href="{{ path('formulaire') }}">Accéder au formulaire</a></button>
                 </div>
+                <div class="col-sm-9">
 
-                <div class="col-md-8 col-md-offset-2 item-block animate-box" data-animate-effect="fadeIn">
-                    <h2>Vous êtes propriétaires d'un bien</h2>
-                    <div class="panel-group" id="accordion1">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading" >
-                                <h5 class="panel-title">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1"
-                                       href="#accordion1_1">En bon état locatif</a>
-                                </h5>
-                            </div>
-                            <div id="accordion1_1" class="panel-collapse collapse in">
-                                <div class="panel-body">
-                                    Si votre bien répond aux normes de salubrité et est louable immédiatement, vous
-                                    pouvez
-                                    prendre contact avec l'agence.
-                                    Une visite du bien sera programmée rapidement et vous recevrez une estimation du
-                                    loyer
-                                    auquel vous pourrez prétendre.
-                                    Cette démarche est sans engagement de votre part
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-md-11 col-md-offset-1 item-block animate-box" data-animate-effect="fadeIn">
+                        <h4>Quel type de biens intéresse l'AIVS LAKLE?</h4>
+                        Tout bien immobilier destiné au logement situé en Guyane.<br>
+                        LAKLE gère pour le compte des propriétaires:
+                        <ul>
+                            <li>les studios</li>
+                            <li>les appartements</li>
+                            <li>les maisons</li>
+                            <li>les immeubles</li>
 
-                        <div class="panel panel-primary">
-                            <div class="panel-heading" >
-                                <h5 class="panel-title">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1"
-                                       href="#accordion1_2">Qui a besoin d'une légère remise en état</a>
-                                </h5>
-                            </div>
-                            <div id="accordion1_2" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    Nous disposons de l'expérience nécessaire pour une remise en état. Prenez contact
-                                    avec
-                                    nous, nous programmerons
-                                    une visite du bien qui nous permettra de définir les rafraichissements
-                                    indispensables,
-                                    ainsi que le loyer auquel vous pourrez prétendre après la remise en état.
+                        </ul>
+                    </div>
+
+                    <div class="col-md-11 col-md-offset-1 item-block animate-box" data-animate-effect="fadeIn">
+                        <h4>Vous êtes propriétaires d'un bien</h4>
+                        <div class="panel-group" id="accordion1">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1"
+                                           href="#accordion1_1">En bon état locatif</a>
+                                    </h5>
+                                </div>
+                                <div id="accordion1_1" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        Si votre bien répond aux normes de salubrité et est louable immédiatement, vous
+                                        pouvez
+                                        prendre contact avec l'agence.
+                                        Une visite du bien sera programmée rapidement et vous recevrez une estimation du
+                                        loyer
+                                        auquel vous pourrez prétendre.
+                                        Cette démarche est sans engagement de votre part
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="panel panel-primary">
-                            <div class="panel-heading" >
-                                <h5 class="panel-title">
-                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1"
-                                       href="#accordion1_3">Qui a besoin d'être rénové</a>
-                                </h5>
-                            </div>
-                            <div id="accordion1_3" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    Nous pouvons définir avec vous le type de rénovation à envisager et les moyens
-                                    financiers à mobiliser.Nous pouvons également accompagner la réalisation des
-                                    travaux.
+
+
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h5 class="panel-title">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1"
+                                           href="#accordion1_3">Qui a besoin d'être rénové</a>
+                                    </h5>
+                                </div>
+                                <div id="accordion1_3" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        Vous pouvez bénéficier d'une aide financière de l'Agence nationale de l'habitat
+                                        (Anah) pour réaliser les travaux nécessaires. En contrepartie,
+                                        vous vous engagez à proposer votre bien à un loyer abordable à des locataires de
+                                        ressources modestes. LAKLE assurera la mise
+                                        en location dès la réalisation de ces démarches.
+                                        <p><a href="http://www.anah.fr"
+                                              class="btn btn-primary btn-outline with-arrow btn-sm">Accéder au site de
+                                                l'Anah <i class="icon-arrow-right"></i></a></p>
+                                    </div>
                                 </div>
                             </div>
+
+
                         </div>
 
 
                     </div>
-
+                    <div class="col-md-11 col-md-offset-1 item-block animate-box" data-animate-effect="fadeIn">
+                        <h4>Nos services</h4>
+                        <p>L'agence effectue son activité, soit en location, soit dans le cadre d'un bail de droit
+                            commun par l'intermédiaire
+                            d'un mandat en gestion, en associant pratiques immobilières professionnelles et déontologie
+                            propre au secteur de l'économie sociale. Elle assure :</p>
+                        <ul>
+                            <li>la gestion locative</li>
+                            <li>l'entretien du logement</li>
+                            <li>l'indexation de votre loyer</li>
+                            <li>la remise en état du bien en fin de location</li>
+                            <li>en cas de réparations importantes à votre charge, un accompagnement et un conseil</li>
+                        </ul>
+                    </div>
 
                 </div>
-                <div class="col-md-8 col-md-offset-2 item-block animate-box"  data-animate-effect="fadeIn">
-                    <h2>Nos garanties</h2>
-                    <p>LAKLE vous garantit :</p>
-                    <ul>
-                        <li>le paiement de votre loyer, quelle que soit la situation du bien (vide locatif entre deux locataires)</li>
-                        <li>le paiement des provisions pour charges et des consommations du locataire</li>
-                        <li>l'indexation de votre loyer</li>
-                        <li>la remise en état du bien en fin de location</li>
-                        <li>l'établissement des décomptes, ainisi que le relevé des compteurs et le calcul des consommations</li>
-                        <li>l'intervention de la régie de l'agence sur les petites réparations</li>
-                        <li>en cas de réparations importantes à votre charge, un accompagnement et un conseil</li>
-                    </ul>
-                </div>
-
             </div>
-
         </div>
     </div>
 

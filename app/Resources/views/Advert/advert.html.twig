@@ -40,7 +40,9 @@
                        <div class="panel-heading">Type : {{ advert.type }}</div>
                         <ul class="list-group">
                             <li class="list-group-item">Commune : {{ advert.address }}</li>
-                            <li class="list-group-item">Prix: {{ advert.price }}</li>
+                            <li class="list-group-item">Loyer hors charges: {{ advert.price }}</li>
+                            <li class="list-group-item">Provisions sur charges: {{ advert.charges }}</li>
+                            <li class="list-group-item">Frais d'agence: {{ advert.fees }}</li>
                         </ul>
                       <div class="panel-body"> <p>Détail du logement : {{ advert.content|raw }}</p></div>
 

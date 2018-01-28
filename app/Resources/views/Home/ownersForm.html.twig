@@ -1,0 +1,159 @@
+{% extends "base.html.twig" %}
+{% block content %}
+    <div class="fh5co-page-title" style="background-image: url({{ asset('images/slide_6.jpg') }});">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 animate-box">
+                    <h1><span class="colored">Propriétaires/bailleurs :</span> Formulaire en ligne</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="best-deal">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1 item-block animate-box" data-animate-effect="fadeIn"
+                     style="padding: 40px; border: 2px solid #4CB648; border-radius: 10px ">
+                    Soumettez en ligne votre demande de mise en gestion par nos services , sans oublier les pièces à
+                    fournir scannées :
+                    <ul>
+                        <li>
+                            Pièce d'identité
+                        </li>
+                        <li>
+                            Titre de propriété
+                        </li>
+                        <li>
+                            Relevé d'identité bancaire
+                        </li>
+                        <li>
+                            Engagement signé avec l'Anah (le cas échéant)
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="col-md-10 col-md-offset-1 item-block animate-box" data-animate-effect="fadeIn"
+                     style="padding: 40px; border: 2px solid #4CB648; border-radius: 10px ">
+
+                    <div class="row">
+                        {{ form_start(form) }}
+                        {{ form_errors(form) }}
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                {{ form_label(form.lastname, "Nom") }}
+                                {{ form_errors(form.lastname) }}
+                                {{ form_widget(form.lastname, {'attr': {'class':'form-control'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.firstname, "Prénom") }}
+                                {{ form_errors(form.firstname) }}
+                                {{ form_widget(form.firstname, {'attr': {'class':'form-control'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.email, "Email") }}
+                                {{ form_errors(form.email) }}
+                                {{ form_widget(form.email, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.message, "Message (facultatif)") }}
+                                {{ form_errors(form.message) }}
+                                {{ form_widget(form.message, {'attr':{'class':'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-md-offset-1">
+                            <div class="form-group">
+                                {{ form_label(form.attachments, "Pièces jointes") }}
+                                {{ form_errors(form.attachments) }}
+                                {{ form_widget(form.attachments) }}
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input value="Envoyer" class="btn btn-primary" type="submit">
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+    {% block javascripts %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+                var $container = $('div#owner_attachments');
+
+                // On ajoute un lien pour ajouter une nouvelle catégorie
+                var $addLink = $('<a href="#" id="add_attachment" class="btn btn-success" style="margin-bottom: 20px;">Ajouter un document</a>');
+                $container.append($addLink);
+
+
+                // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+                $addLink.click(function (e) {
+                    addAttachment($container);
+                    e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                    return false;
+                });
+
+                // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+
+                var index = $container.find(':input').length;
+
+
+                // Pour chaque document déjà existant, on ajoute un lien de suppression
+                $container.children('div').each(function () {
+                    addDeleteLink($(this));
+                });
+
+
+                // La fonction qui ajoute un document
+                function addAttachment($container) {
+                    // Dans le contenu de l'attribut « data-prototype », on remplace :
+                    // - le texte "__name__label__" qu'il contient par le label du champ
+                    // - le texte "__name__" qu'il contient par le numéro du champ
+                    var $prototype = $($container.attr('data-prototype').replace(/__name__label__/g, 'Document n°' + (index + 1))
+                        .replace(/__name__/g, index));
+
+                    // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+                    addDeleteLink($prototype);
+
+                    // On ajoute le prototype modifié à la fin de la balise <div>
+                    $container.append($prototype);
+
+                    // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+                    index++;
+                }
+
+                // La fonction qui ajoute un lien de suppression d'un document
+                function addDeleteLink($prototype) {
+                    // Création du lien
+                    $deleteLink = $('<a href="#" class="btn btn-danger" style="margin-top: 12px; margin-bottom: 25px;">Supprimer</a>');
+
+                    // Ajout du lien
+
+                    $prototype.append($deleteLink);
+
+                    // Ajout du listener sur le clic du lien
+                    $deleteLink.click(function (e) {
+                        $prototype.remove();
+
+                        e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                        return false;
+                    });
+                }
+            });
+        </script>
+    {% endblock %}

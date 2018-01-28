@@ -98,7 +98,9 @@ easy_admin:
                 fields:
                     - id
                     - { property: 'type', label: 'Type'}
-                    - { property: 'price', label: 'Prix'}
+                    - { property: 'price', label: 'Loyer hors charges'}
+                    - { property: 'charges', label: 'Provisions sur charges'}
+                    - { property: 'fees', label: 'Frais agence'}
                     - { property: 'address', label: 'Commune'}
                     - { property: 'firstImage', type: 'image', base_path: '%app.path.advert_images%' }
 
@@ -107,7 +109,9 @@ easy_admin:
                 fields:
 
                     - { property: 'type', label: 'Type'}
-                    - { property: 'price', label: 'Prix'}
+                    - { property: 'price', label: 'Loyer hors charges'}
+                    - { property: 'charges', label: 'Provisions sur charges'}
+                    - { property: 'fees', label: 'Frais agence'}
                     - { property: 'address', label: 'Commune'}
                     - { property: 'content',label: 'Annonce', type: 'raw'}
                     - { property: 'images', template: 'vich_uploader_image.html.twig' }
@@ -119,7 +123,9 @@ easy_admin:
                 fields:
                     - { type: 'group', label: 'Informations', icon: 'info-circle' }
                     - { property: 'type', label: 'Type'}
-                    - { property: 'price', label: 'Prix'}
+                    - { property: 'price', label: 'Loyer hors charges'}
+                    - { property: 'charges', label: 'Provisions sur charges'}
+                    - { property: 'fees', label: 'Frais agence'}
                     - { property: 'address', label: 'Commune'}
                     - { property: 'content', type: 'ckeditor',label: 'Annonce'}
                     - { type: 'group', label: 'Photographies', icon: 'camera', help: '5 photos maximum' }

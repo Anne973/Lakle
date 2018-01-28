@@ -33,5 +33,12 @@ class SecurityController extends Controller
             'error'         => $error,
         ));
     }
+    /**
+     * @Route("/forgot_password", name="forgot_password")
+     */
 
+    public function forgotPasswordAction()
+    {
+
+    }
 }

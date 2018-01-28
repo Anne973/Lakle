@@ -39,6 +39,20 @@ class Advert
     private $price;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="charges", type="integer")
+     */
+    private $charges;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="fees", type="integer")
+     */
+    private $fees;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="content", type="text")
@@ -233,5 +247,53 @@ class Advert
     public function getFirstImage(){
         $first = $this->images->first();
         return ($first)? $first->getImage(): "";
+    }
+
+    /**
+     * Set charges
+     *
+     * @param integer $charges
+     *
+     * @return Advert
+     */
+    public function setCharges($charges)
+    {
+        $this->charges = $charges;
+
+        return $this;
+    }
+
+    /**
+     * Get charges
+     *
+     * @return integer
+     */
+    public function getCharges()
+    {
+        return $this->charges;
+    }
+
+    /**
+     * Set fees
+     *
+     * @param integer $fees
+     *
+     * @return Advert
+     */
+    public function setFees($fees)
+    {
+        $this->fees = $fees;
+
+        return $this;
+    }
+
+    /**
+     * Get fees
+     *
+     * @return integer
+     */
+    public function getFees()
+    {
+        return $this->fees;
     }
 }
