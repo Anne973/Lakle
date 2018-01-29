@@ -135,5 +135,13 @@ class HomeController extends Controller
         return $this->render('Home/tenants.html.twig');
     }
 
+    /**
+     * @Route("/mentions_legales", name="mentions_legales")
+     */
+
+    public function legalNoticeAction()
+    {
+        return $this->render('Home/legalNotice.html.twig');
+    }
 
 }
