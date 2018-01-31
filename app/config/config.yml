@@ -8,6 +8,8 @@ imports:
 parameters:
     locale: en
     app.path.advert_images: uploads/adverts/images
+    app.path.advert_attachments: uploads/articles/attachments
+
 
 framework:
     #esi: ~
@@ -71,6 +73,7 @@ swiftmailer:
 easy_admin:
     design:
         form_theme: 'easy_admin/form/bootstrap_3_layout.html.twig'
+
 
     site_name: 'Lakle Admin'
 
@@ -161,7 +164,9 @@ easy_admin:
                 fields:
                     - { property: 'date', label: 'Date'}
                     - { property: 'title', label: 'Titre'}
-                    - { property: 'content', label: 'Article'}
+                    - { property: 'content', label: 'Article', type: 'raw'}
+                    - { property: 'attachments', label: ' Pièces jointes', template: 'attachment.html.twig' }
+
 
             form:
                 title : "Nouvel article"
@@ -171,6 +176,9 @@ easy_admin:
                 - { property: 'date', label: 'Date'}
                 - { property: 'title', label: 'Titre'}
                 - { property: 'content', type: 'ckeditor', label: 'Article' }
+                - { property: 'attachments', label: 'Pièces jointes', type: 'collection', type_options: { entry_type: 'AppBundle\Form\AttachmentType', by_reference: false}}
+
+
             new:
                 form_options: { validation_groups: ['Default', 'Article'] }
 
@@ -193,6 +201,9 @@ vich_uploader:
         advert_images:
             uri_prefix:         '%app.path.advert_images%'
             upload_destination: '%kernel.root_dir%/../web/uploads/adverts/images'
+        article_attachments:
+            uri_prefix:         '%app.path.advert_attachments%'
+            upload_destination: '%kernel.root_dir%/../web/uploads/articles/attachments'
 
 liip_imagine:
     resolvers:

@@ -46,7 +46,7 @@ class Article
     private $content;
 
     /**
-     * @ORM\OneToMany(targetEntity="Attachment", mappedBy="article", cascade={"persist"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Attachment", mappedBy="article", cascade={"persist"})
      */
     private $attachments;
 
@@ -154,40 +154,5 @@ class Article
         }
 
         return $description ;
-    }
-
-    /**
-     * Add attachment
-     *
-     * @param \AppBundle\Entity\Attachment $attachment
-     *
-     * @return Article
-     */
-    public function addAttachment(\AppBundle\Entity\Attachment $attachment)
-    {
-        $this->attachments[] = $attachment;
-        $attachment->setArticle($this);
-
-        return $this;
-    }
-
-    /**
-     * Remove attachment
-     *
-     * @param \AppBundle\Entity\Attachment $attachment
-     */
-    public function removeAttachment(\AppBundle\Entity\Attachment $attachment)
-    {
-        $this->attachments->removeElement($attachment);
-    }
-
-    /**
-     * Get attachments
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAttachments()
-    {
-        return $this->attachments;
     }
 }

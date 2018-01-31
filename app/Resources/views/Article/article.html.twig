@@ -18,7 +18,11 @@
                 <div class="col-md-8 col-md-offset-2 item-block animate-box" data-animate-effect="fadeIn">
 
 
-                        <p>{{ article.content }}</p>
+                        <p>{{ article.content|raw }}</p>
+                    {% for attachment in article.attachments %}
+                        <p><a href="{{ asset ('uploads/articles/attachments/' ~ attachment.attachment)}}">{{ attachment.name }}</a></p>
+                        <hr>
+                    {% endfor %}
 
 
                 </div>
