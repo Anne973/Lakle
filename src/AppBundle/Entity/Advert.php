@@ -67,7 +67,7 @@ class Advert
     private $address;
 
     /**
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="advert", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="advert", cascade={"persist"}, orphanRemoval=true)
      * @Assert\Count(
      *     min=1,
      *     max=5,

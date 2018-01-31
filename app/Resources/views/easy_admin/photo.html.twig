@@ -1,0 +1,13 @@
+{%for photo in value%}
+
+
+
+    <a href="#" class="easyadmin-thumbnail" data-featherlight="#easyadmin-lightbox-{{ photo.id }}" data-featherlight-close-on-click="anywhere">
+
+        <img src="{{ asset(vich_uploader_asset(photo, 'photoFile')) }}" >
+    </a>
+
+    <div id="easyadmin-lightbox-{{ photo.id }}" class="easyadmin-lightbox">
+        <img src="{{ asset(vich_uploader_asset(photo, 'photoFile')) }}">    </div>
+
+{% endfor %}

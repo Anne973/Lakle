@@ -1,10 +1,10 @@
 {% extends "base.html.twig" %}
 {% block content %}
     <div class="fh5co-page-title" style="background-image: url({{ asset('images/slide_6.jpg') }});">
-        <div class="overlay"></div>
+
         <div class="container">
             <div class="row">
-                <div class="col-md-12 animate-box">
+                <div class="col-md-8 col-md-offset-2 animate-box">
                     <h1><span class="colored">{{ article.title }}</span></h1><p>{{ article.date|date('d/m/Y') }}</p>
                 </div>
             </div>
@@ -19,14 +19,19 @@
 
 
                         <p>{{ article.content|raw }}</p>
-                    {% for attachment in article.attachments %}
-                        <p><a href="{{ asset ('uploads/articles/attachments/' ~ attachment.attachment)}}">{{ attachment.name }}</a></p>
-                        <hr>
-                    {% endfor %}
+                    {% for photo in article.photos %}
+                        <img src="{{ asset('uploads/articles/photos/' ~ photo.photo)| imagine_filter('my_thumb') }}"
+                             alt="{{ photo.photo }}" >
 
+                    {% endfor %}
+                    <p>
+                    {% for attachment in article.attachments %}
+                        <p><a href="{{ asset ('uploads/articles/attachments/' ~ attachment.attachment)}}"><i class="icon-document"></i> {{ attachment.name }}</a> </p>
+
+                    {% endfor %}
+                    </div>
 
                 </div>
-
             </div>
 
 

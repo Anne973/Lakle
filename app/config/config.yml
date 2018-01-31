@@ -8,7 +8,8 @@ imports:
 parameters:
     locale: en
     app.path.advert_images: uploads/adverts/images
-    app.path.advert_attachments: uploads/articles/attachments
+    app.path.article_attachments: uploads/articles/attachments
+    app.path.article_photos: uploads/articles/photos
 
 
 framework:
@@ -165,18 +166,22 @@ easy_admin:
                     - { property: 'date', label: 'Date'}
                     - { property: 'title', label: 'Titre'}
                     - { property: 'content', label: 'Article', type: 'raw'}
-                    - { property: 'attachments', label: ' Pièces jointes', template: 'attachment.html.twig' }
+                    - { property: 'attachments', label: ' Pièces jointes', template: 'attachment.html.twig'}
+                    - { property: 'photos', label: ' Photos', template: 'photo.html.twig'}
 
 
             form:
                 title : "Nouvel article"
                 form_options: { validation_groups: ['Default'] }
                 fields:
-
+                - { type: 'group', label: 'Contenu', icon: 'pencil' }
                 - { property: 'date', label: 'Date'}
                 - { property: 'title', label: 'Titre'}
                 - { property: 'content', type: 'ckeditor', label: 'Article' }
+                - { type: 'group', label: 'Pièces jointes', icon: 'paperclip', help: 'Insérer ici fichiers pdf' }
                 - { property: 'attachments', label: 'Pièces jointes', type: 'collection', type_options: { entry_type: 'AppBundle\Form\AttachmentType', by_reference: false}}
+                - { type: 'group', label: 'Photos', icon: 'camera', help: 'Insérer ici fichiers de type jpg, png ou jpeg' }
+                - { property: 'photos', label: 'Photos', type: 'collection', type_options: { entry_type: 'AppBundle\Form\PhotoType', by_reference: false}}
 
 
             new:
@@ -202,8 +207,14 @@ vich_uploader:
             uri_prefix:         '%app.path.advert_images%'
             upload_destination: '%kernel.root_dir%/../web/uploads/adverts/images'
         article_attachments:
-            uri_prefix:         '%app.path.advert_attachments%'
+            uri_prefix:         '%app.path.article_attachments%'
             upload_destination: '%kernel.root_dir%/../web/uploads/articles/attachments'
+        article_photos:
+            uri_prefix:         '%app.path.article_photos%'
+            upload_destination: '%kernel.root_dir%/../web/uploads/articles/photos'
+
+
+
 
 liip_imagine:
     resolvers:
@@ -224,8 +235,8 @@ liip_imagine:
 
                 # create a thumbnail: set size to 120x90 and use the "outbound" mode
                 # to crop the image when the size ratio of the input differs
-                thumbnail: { size: [120, 90], mode: outbound }
+                thumbnail: { size: [240, 180], mode: outbound }
 
                 # create a 2px black border: center the thumbnail on a black background
                 # 4px larger to create a 2px border around the final image
-                background: { size: [124, 94], position: center, color: '#000000' }
+                background: { size: [244, 184], position: center, color: '#606060' }

@@ -50,12 +50,17 @@ class Article
      */
     private $attachments;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Photo", mappedBy="article", cascade={"persist"}, orphanRemoval=true)
+     */
+    private $photos;
 
 
     public function __construct()
     {
         $this->date = new \Datetime();
         $this->attachments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->photos = new \Doctrine\Common\Collections\ArrayCollection();
 
 
     }
@@ -189,5 +194,40 @@ class Article
     public function getAttachments()
     {
         return $this->attachments;
+    }
+
+    /**
+     * Add photo
+     *
+     * @param \AppBundle\Entity\Photo $photo
+     *
+     * @return Article
+     */
+    public function addPhoto(\AppBundle\Entity\Photo $photo)
+    {
+        $this->photos[] = $photo;
+        $photo->setArticle($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove photo
+     *
+     * @param \AppBundle\Entity\Photo $photo
+     */
+    public function removePhoto(\AppBundle\Entity\Photo $photo)
+    {
+        $this->photos->removeElement($photo);
+    }
+
+    /**
+     * Get photos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPhotos()
+    {
+        return $this->photos;
     }
 }

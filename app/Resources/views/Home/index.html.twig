@@ -170,7 +170,9 @@
                 {% for article in lastArticles %}
                 <div class="col-md-4 animate-box" data-animate-effect="fadeIn">
                     <a class="fh5co-entry" href="{{ path ('article', {'id': article.id}) }}">
-
+                        <figure>
+                            <img src="{{ asset('images/cle.png')}}" alt="Free Website Template, Free HTML5 Bootstrap Template" class="img-responsive">
+                        </figure>
                         <div class="fh5co-copy">
                             <h3>{{ article.title }}</h3>
                             <span class="fh5co-date">{{ article.date|date('d/m/Y') }}</span>
