@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+
+
+    <div class="fh5co-section-with-image">
+
+        <img src="{{asset('images/colibri.jpg')}}" alt="" class="img-responsive">
+        <div class="fh5co-box animate-box">
+            <p>La page demandée est introuvable.</p>
+            <p><a href="{{ path('homepage') }}" class="btn btn-primary btn-outline with-arrow">Revenir à la page d'accueil <i class="icon-arrow-right"></i></a></p>
+        </div>
+
+    </div>
+
+
+{% endblock %}

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Attachment;
 use DateTime;
 
 use Symfony\Component\Form\AbstractType;
@@ -23,7 +24,7 @@ class AttachmentType extends AbstractType
 
 
             ->add('attachmentFile', VichFileType::class)
-            ->add('name', TextType::class);
+            ->add('name',  TextType::class);
 
     }
 
@@ -33,7 +34,7 @@ class AttachmentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Attachment'
+            'data_class' =>  Attachment::class
         ));
     }
 

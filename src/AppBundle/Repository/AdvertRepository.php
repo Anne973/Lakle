@@ -4,6 +4,7 @@ namespace AppBundle\Repository;
 use AppBundle\Entity\Advert;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * AdvertRepository
@@ -16,5 +17,32 @@ class AdvertRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Advert::class);
+    }
+
+    public function getAdvertsInHomepage(){
+        $qb = $this->createQueryBuilder('a')
+            ->setMaxResults(Advert::ADVERTS_IN_HOMEPAGE)
+            ->orderBy('a.id','desc');
+
+        return $qb->getQuery()->getResult();
+    }
+
+
+
+    public function getAdverts($page, $nbPerPage)
+    {
+
+        $queryBuilder = $this->createQueryBuilder('a');
+
+        $query = $queryBuilder->getQuery();
+        $query
+            // On définit l'annonce à partir de laquelle commencer la liste
+            ->setFirstResult(($page - 1) * $nbPerPage)
+            // Ainsi que le nombre d'annonce à afficher sur une page
+            ->setMaxResults($nbPerPage);
+
+        // Enfin, on retourne l'objet Paginator correspondant à la requête construite
+        // (n'oubliez pas le use correspondant en début de fichier)
+        return new Paginator($query, true);
     }
 }

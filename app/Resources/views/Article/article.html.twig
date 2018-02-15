@@ -1,7 +1,8 @@
 {% extends "base.html.twig" %}
+{% block title %}{{ article.title }} - {% endblock %}
 {% block content %}
-    <div class="fh5co-page-title" style="background-image: url({{ asset('images/slide_6.jpg') }});">
-
+    <div class="fh5co-page-title" style="background-image: url({{ asset('images/header.jpeg') }});">
+        <div class="overlay"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 animate-box">
@@ -10,7 +11,7 @@
             </div>
         </div>
     </div>
-    <div id="best-deal">
+    <div id="fh5co-testimonial">
         <div class="container">
             <div class="row">
 
@@ -20,7 +21,7 @@
 
                         <p>{{ article.content|raw }}</p>
                     {% for photo in article.photos %}
-                        <img src="{{ asset('uploads/articles/photos/' ~ photo.photo)| imagine_filter('my_thumb') }}"
+                        <img src="{{ asset(('uploads/articles/photos/' ~ photo.photo)| imagine_filter('my_thumb')) }}"
                              alt="{{ photo.photo }}" >
 
                     {% endfor %}
@@ -37,7 +38,7 @@
 
         </div>
 
-        </div>
+
 
 
 {% endblock %}

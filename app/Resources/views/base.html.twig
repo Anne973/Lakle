@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}{% endblock %} Laklé</title>
+        <meta name="description" content="{% block description %}{% endblock %}">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.png') }}" />
 
         <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
         <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700' rel='stylesheet' type='text/css'> -->
@@ -19,6 +22,8 @@
         <link rel="stylesheet" href="{{ asset('css/flexslider.css') }}">
         <!-- Theme style  -->
         <link rel="stylesheet" href="{{ asset ('css/style.css') }}">
+
+
 
         <!-- Modernizr JS -->
         <script src="{{ asset('js/modernizr-2.6.2.min.js') }}"></script>
@@ -70,7 +75,7 @@
                 </div>
 
                 <div class="col-md-2 col-sm-12  col-sm-push-0 col-xs-12 col-xs-push-0 ">
-                    <h3><i class="icon-book"></i> Documentation</h3>
+                    <h3><a href="{{ path('documents') }}"><i class="icon-book"></i> Documentation</h3>
 
                 </div>
 

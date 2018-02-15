@@ -1,177 +1,159 @@
 {% extends "base.html.twig" %}
+{% block title %}Accueil - {% endblock %}
+{% block description %}Laklé est une agence immobilière à vocation sociale (AIVS). Elle a la particularité
+    de mobiliser des logements à loyer modéré dans le parc public et dans le parc privé pour mettre
+    à disposition des personnes à faibles ressources, en apportant un maximum de garanties au propriétaire.{% endblock %}
 {% block content %}
-    <aside id="fh5co-hero" class="js-fullheight">
-        <div class="flexslider js-fullheight">
-            <ul class="slides">
-                <li style="background-image: url({{ asset('images/photo_home.jpeg') }});">
-                    <div class="container">
-                        <div class="col-md-12 text-center js-fullheight fh5co-property-brief slider-text">
-                            <div class="fh5co-property-brief-inner">
-                                <div class="fh5co-box">
+<aside id="fh5co-hero" class="js-fullheight">
+    <div class="flexslider js-fullheight">
+        <ul class="slides">
+            <li style="background-image: url({{ asset('images/photo_home.jpeg') }});">
+                <div class="container">
+                    <div class="col-md-12 text-center js-fullheight fh5co-property-brief slider-text">
+                        <div class="fh5co-property-brief-inner">
+                            <div class="fh5co-box">
 
-                                    <h3><a href="#">Propriétaires</a></h3>
-                                    <p>Vous cherchez à louer votre logement?</p>
-                                    <p>Vous exigez le maximum de garanties?</p>
-                                    <p>Vous souhaitez une mis en location immédiate?</p>
-                                    <p><a href="#" class="btn btn-primary">Laklé s'occupe de vous</a></p>
-
-
-
+                                <h3><a href="#">Propriétaires</a></h3>
+                                <p>Vous cherchez à louer votre logement?</p>
+                                <p>Vous exigez le maximum de garanties?</p>
+                                <p>Vous souhaitez une mis en location immédiate?</p>
+                                <p><a href="{{ path('proprietaires') }}" class="btn btn-primary">Laklé s'occupe de
+                                        vous</a></p>
 
 
-                                </div>
                             </div>
                         </div>
                     </div>
-                </li>
-
-            </ul>
-        </div>
-    </aside>
-    <div id="fh5co-presentation">
-        <div class="container" >
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
-                    <h2>Qu'est-ce que LAKLE?</h2>
-                    <p>Laklé est une agence immobilière à vocation sociale. Elle a la particularité de mobiliser des logements
-                    à loyers maîtrisés dans le parc public et dans le parc privé pour les mettre à disposition des personnes
-                    à faibles ressources, <strong>en apportant un maximum de garanties aux propriétaires</strong></p>
                 </div>
-                <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
+            </li>
 
-
-
-                </div>
+        </ul>
+    </div>
+</aside>
+<div id="fh5co-presentation">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box"
+                 data-animate-effect="fadeIn">
+                <h2>Qui sommes-nous?</h2>
+                <p>Laklé est une agence immobilière à vocation sociale. Elle a la particularité de mobiliser des
+                    logements
+                    à loyers maîtrisés dans le parc public et dans le parc privé pour les mettre à disposition des
+                    personnes
+                    à faibles ressources, <strong>en apportant un maximum de garanties aux propriétaires</strong>
+                </p>
+            </div>
+            <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
 
 
             </div>
+
+
         </div>
     </div>
+</div>
 
-    <div id="best-deal">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
-                    <h2>Derniers logements mis en ligne</h2>
-                   </div>
+<div id="best-deal">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box"
+                 data-animate-effect="fadeIn">
+                <h2>Derniers logements mis en ligne</h2>
+            </div>
+            {% for advert in lastAdverts %}
                 <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
 
 
                     <div class="fh5co-property">
-                         <figure>
-                             <img src="{{ asset('images/slide_3.jpg')}}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-                             <a href="#" class="tag">For Sale</a>
-                         </figure>
-                         <div class="fh5co-property-innter">
-                             <h3><a href="#">Villa In Hialeah, Dade County</a></h3>
-                             <div class="price-status">
-                                 <span class="price">$540,000 </span>
-                             </div>
-                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dicta magni amet atque doloremque velit unde adipisci omnis hic quaerat.</p>
-                         </div>
-                         <p class="fh5co-property-specification">
-                             <span><strong>3500</strong> Sq Ft</span>  <span><strong>3</strong> Beds</span>  <span><strong>3.5</strong> Baths</span>  <span><strong>2</strong> Garages</span>
-                         </p>
-                     </div>
+                        <figure>
+                            <img src="{{ asset('uploads/adverts/images/' ~ advert.firstImage) }}"
+                                 style="height:250px" class="img-responsive">
+                            <a href="{{ path ('advert', {'id': advert.id}) }}" class="tag">Voir plus</a>
+                        </figure>
+                        <div class="fh5co-property-innter">
+                            <h3><a href="#">{{ advert.address }}</a></h3>
+                            <div class="price-status">
+                                <span class="price">{{ advert.type }} </span>
+                            </div>
+                            <p>{{ advert.limitedText|raw }}</p>
+                        </div>
+
+                        <p class="fh5co-property-specification">
+                            Loyer hors charges <span><strong>{{ advert.price }}€/mois</strong></span> <br>
+
+                        </p>
+                    </div>
 
 
-                 </div>
-                 <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
-
-                     <div class="fh5co-property">
-                         <figure>
-                             <img src="{{ asset('images/slide_2.jpg') }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-                             <a href="#" class="tag">For Rent</a>
-                         </figure>
-                         <div class="fh5co-property-innter">
-                             <h3><a href="#">15 Apartments Of Type B</a></h3>
-                             <div class="price-status">
-                                 <span class="price">$2,000<span class="per">/month</span> </span>
-                             </div>
-                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dicta magni amet atque doloremque velit unde adipisci omnis hic quaerat.</p>
-                         </div>
-                         <p class="fh5co-property-specification">
-                             <span><strong>3500</strong> Sq Ft</span>  <span><strong>3</strong> Beds</span>  <span><strong>3.5</strong> Baths</span>  <span><strong>2</strong> Garages</span>
-                         </p>
-                     </div>
-
-                 </div>
-                 <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
-
-                     <div class="fh5co-property">
-                         <figure>
-                             <img src="{{ asset('images/slide_1.jpg') }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-                             <a href="#" class="tag">For Sale</a>
-                         </figure>
-                         <div class="fh5co-property-innter">
-                             <h3><a href="#">401 Biscayne Boulevard, Miami</a></h3>
-                             <div class="price-status">
-                                 <span class="price">$1,540,000</span>
-                             </div>
-                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dicta magni amet atque doloremque velit unde adipisci omnis hic quaerat.</p>
-                         </div>
-                         <p class="fh5co-property-specification">
-                             <span><strong>3500</strong> Sq Ft</span>  <span><strong>3</strong> Beds</span>  <span><strong>3.5</strong> Baths</span>  <span><strong>2</strong> Garages</span>
-                         </p>
-                     </div>
                 </div>
+            {% endfor %}
 
+
+        </div>
+    </div>
+</div>
+
+
+<div id="fh5co-testimonial">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box"
+                 data-animate-effect="fadeIn">
+                <h2>Témoignages</h2>
+
+            </div>
+            <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
+                <blockquote>
+                    <p>&ldquo; She packed her seven versalia, put her initial into the belt and made herself on the
+                        way. When she reached the first hills of the Italic Mountains, she had a last view back on
+                        the skyline of her hometown Bookmarksgrove, the headline of. &rdquo;</p>
+                    <p><span class="fh5co-author"><cite>Jason Davidson</cite></span><i
+                                class="icon twitter-color icon-twitter pull-right"></i></p>
+
+                </blockquote>
+            </div>
+            <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
+                <blockquote>
+                    <p>&ldquo; Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric
+                        question ran over her cheek, then she continued her way. She had a last view back on the
+                        skyline of her hometown Bookmarksgrove, the headline of. &rdquo;</p>
+                    <p><span class="fh5co-author"><cite>Kyle Smith</cite></span><i
+                                class="icon googleplus-color icon-google-plus pull-right"></i></p>
+                </blockquote>
+            </div>
+            <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
+
+                <blockquote>
+                    <p>&ldquo; The Big Oxmox advised her not to do so, because there were thousands of bad Commas,
+                        wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. S he had
+                        a last view back on the skyline of her hometown Bookmarksgrove. &rdquo;</p>
+                    <p><span class="fh5co-author"><cite>Rick Cook</cite></span><i
+                                class="icon facebook-color icon-facebook pull-right"></i></p>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="fh5co-blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box"
+                 data-animate-effect="fadeIn">
+                <h2>Dernières actualités</h2>
 
             </div>
         </div>
     </div>
-
-
-    <div id="fh5co-testimonial">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
-                    <h2>Témoignages</h2>
-
-                </div>
-                <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
-                    <blockquote>
-                        <p>&ldquo; She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of. &rdquo;</p>
-                        <p><span class="fh5co-author"><cite>Jason Davidson</cite></span><i class="icon twitter-color icon-twitter pull-right"></i></p>
-
-                    </blockquote>
-                </div>
-                <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
-                    <blockquote>
-                        <p>&ldquo; Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way. She had a last view back on the skyline of her hometown Bookmarksgrove, the headline of. &rdquo;</p>
-                        <p><span class="fh5co-author"><cite>Kyle Smith</cite></span><i class="icon googleplus-color icon-google-plus pull-right"></i></p>
-                    </blockquote>
-                </div>
-                <div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
-
-                    <blockquote>
-                        <p>&ldquo; The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. S	he had a last view back on the skyline of her hometown Bookmarksgrove. &rdquo;</p>
-                        <p><span class="fh5co-author"><cite>Rick Cook</cite></span><i class="icon facebook-color icon-facebook pull-right"></i></p>
-                    </blockquote>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <div id="fh5co-blog">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
-                    <h2>Dernières actualités</h2>
-
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                {% for article in lastArticles %}
+    <div class="container">
+        <div class="row">
+            {% for article in lastArticles %}
                 <div class="col-md-4 animate-box" data-animate-effect="fadeIn">
                     <a class="fh5co-entry" href="{{ path ('article', {'id': article.id}) }}">
                         <figure>
-                            <img src="{{ asset('images/cle.png')}}" alt="Free Website Template, Free HTML5 Bootstrap Template" class="img-responsive">
+                            <img src="{{ asset('images/cle.png') }}"
+                                 alt="Free Website Template, Free HTML5 Bootstrap Template" class="img-responsive">
                         </figure>
                         <div class="fh5co-copy">
                             <h3>{{ article.title }}</h3>
@@ -180,70 +162,55 @@
                         </div>
                     </a>
                 </div>
-                {% endfor %}
-                <div class="col-md-12 text-center animate-box" data-animate-effect="fadeIn">
-                    <p><a href="{{ path('actualites') }}" class="btn btn-primary btn-outline with-arrow">Voir toutes les actualités <i class="icon-arrow-right"></i></a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="fh5co-cta" style="background-image: url({{ asset('images/slide_4.jpg') }});">
-        <div class="overlay"></div>
-        <div class="container">
+            {% endfor %}
             <div class="col-md-12 text-center animate-box" data-animate-effect="fadeIn">
-                <h3>Prenez quelques minutes pour remplir notre questionnaire</h3>
-                <p><a href="#" class="btn btn-primary btn-outline with-arrow">Get started now! <i class="icon-arrow-right"></i></a></p>
+                <p><a href="{{ path('actualites') }}" class="btn btn-primary btn-outline with-arrow">Voir toutes les
+                        actualités <i class="icon-arrow-right"></i></a></p>
             </div>
         </div>
     </div>
-
-    <div id="fh5co-agents">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center fh5co-heading white animate-box" data-animate-effect="fadeIn">
-                    <h2>Nos partenaires</h2>
-
-                </div>
-                <div>
-
-                    <div class="col-sm-12 text-center fh5co-heading white animate-box" data-animate-effect="fadeIn">
+</div>
 
 
-                        <img src="{{ asset('images/ctg.png') }}" alt="ctg">
+<div id="fh5co-agents">
+    <div class="container">
 
+            <div class="col-md-12 text-center fh5co-heading white animate-box" data-animate-effect="fadeIn">
+                <h2>Nos partenaires</h2>
 
-
-
-
-
-
-
-                        <img src="{{ asset('images/ADAPEI.jpg') }}" alt="ADAPEI">
-
-
-
-
-
-
-
-                        <img src="{{ asset('images/PACT.jpg') }}" alt="PACT">
-                        <img src="{{ asset('images/caf.png') }}" alt="caf">
-                        <img src="{{ asset('images/logo_djscs.png') }}" alt="djscs">
-                    </div>
-
-                </div>
-                    </div>
-                </div>
             </div>
 
 
+            <div class="col-md-12 animate-box flexslider carousel"
+                 data-animate-effect="fadeIn">
+                <ul class="slides">
+                    <li><img src="{{ asset('images/ctg.png') }}"  alt="ctg" ></li>
+                    <li><img src="{{ asset('images/ADAPEI.jpg') }}"  alt="ADAPEI"></li>
+                    <li><img src="{{ asset('images/soliha.png' )}}"  alt="PACT"></li>
+                    <li><img src="{{ asset('images/logo_djscs.png') }}"  alt="djscs"></li>
+                    <li><img src="{{ asset('images/caf2.png') }}" alt="caf"></li>
+                </ul>
 
 
 
-{% endblock %}
- {% block javascripts %}
+        </div>
+    </div>
+</div>
+
+    {% endblock %}
+    {% block javascripts %}
 
 
- {% endblock %}
+
+        <script type="text/javascript">
+            $(window).load(function() {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    animationLoop: false,
+                    itemWidth: 200,
+                    itemMargin: 30
+                });
+            });
+            </script>
+    {% endblock %}
 

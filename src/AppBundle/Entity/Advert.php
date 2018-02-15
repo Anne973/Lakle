@@ -15,6 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Advert
 {
+    const ADVERTS_IN_HOMEPAGE = 3;
+    const ADVERTS_PER_PAGE = 3;
     /**
      * @var int
      *

@@ -723,7 +723,7 @@ h1, h2, h3, h4, h5, h6, figure {
   position: absolute;
   z-index: 1001;
   width: 40%;
-  right: 10%;
+  right: 5%;
   top: 50%;
   -webkit-box-shadow: 4px 11px 35px -14px rgba(0, 0, 0, 0.5);
   -moz-box-shadow: 4px 11px 35px -14px rgba(0, 0, 0, 0.5);
@@ -1253,7 +1253,7 @@ padding-top:60px;
   }
 }
 .fh5co-cta .overlay, .fh5co-page-title .overlay {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.5);
   left: 0;
   right: 0;
   bottom: 0;
@@ -1409,6 +1409,7 @@ padding-top:60px;
   z-index: 2;
   background: #fff;
 }
+
 
 #fh5co-offcanvas, .fh5co-nav-toggle, #fh5co-page {
   -webkit-transition: 0.5s;

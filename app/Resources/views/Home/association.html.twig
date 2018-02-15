@@ -1,6 +1,16 @@
 {% extends "base.html.twig" %}
+{% block title %}Association - {% endblock %}
+ {% block stylesheets %}
+     <style type="text/css">
+         .rubric {
+             border-bottom: 2px #4CB648 solid;
+         }
+     </style>
+ {% endblock %}
+{% block description %}L'association Laklé a pour objectif de contribuer à la mise en oeuvre d'une politique sociale
+    du logement pour les populations démunies afin de favoriser leur insertion par l'habitat.{% endblock %}
 {% block content %}
-    <div class="fh5co-page-title" style="background-image: url({{ asset('images/slide_6.jpg') }});">
+    <div class="fh5co-page-title" style="background-image: url({{ asset('images/header.jpeg') }});">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -10,24 +20,39 @@
             </div>
         </div>
     </div>
-    <div id="best-deal">
+    <div id="fh5co-testimonial">
         <div class="container">
             <div class="row">
-
-
-                <div class="col-md-5 col-md-offset-1 item-block animate-box" data-animate-effect="fadeIn">
-                    <h2>Nos missions</h2>
-                    <p>LAKLE a pour missions</p>
-                    <p>De contribuer à la mise en oeuvre d'une politique sociale du logement pour les populations démunies
-                        afin de favoriser leur insertion par l'habitat.</p>
-                    <p>D'exercer toutes opérations d'intermédiaires entre bailleurs et locataires permettant le logement ou
-                        le relogement des personnes mal logées ou en difficulté.</p>
-                    <p>De promouvoir la création de logement durable.</p>
-                    <p>D'assurer l'ASSL, l'AVLD, la médiation locative, l'accompagnement socio-éducatif en vue de l'insertion
-                        par le logement des personnes et des familles en difficulté.</p>
+                <div class="col-md-4">
+                    <img src="{{ asset('images/missions.png') }}" alt="">
                 </div>
-                <div class="col-md-5 col-md-offset-1 item-block animate-box" data-animate-effect="fadeIn">
-                    <h2>Nos interventions</h2>
+
+
+                <div class="col-md-6 col-md-offset-2 item-block animate-box" data-animate-effect="fadeIn">
+
+                    <h3 class="rubric">Nos missions</h3>
+
+                    <ul>
+                        <li>Contribuer à la mise en oeuvre d'une politique sociale du logement pour les populations
+                            démunies
+                            afin de favoriser leur insertion par l'habitat.
+                        </li>
+                        <li>Exercer toutes opérations d'intermédiaires entre bailleurs et locataires permettant le
+                            logement ou
+                            le relogement des personnes mal logées ou en difficulté.
+                        </li>
+                        <li>Promouvoir la création de logement durable.</li>
+                        <li>Assurer l'ASSL, l'AVLD, la médiation locative, l'accompagnement socio-éducatif en vue de
+                            l'insertion
+                            par le logement des personnes et des familles en difficulté.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 50px;">
+                <div class="col-md-5  item-block animate-box" data-animate-effect="fadeIn">
+                    <h3 class="rubric">Nos interventions</h3>
                     <ul>
                         <li>Location</li>
                         <li>Mandat de gestion (rédaction de bail, état des lieux, gestion locative)</li>
@@ -38,31 +63,31 @@
 
                     </ul>
                 </div>
-                </div>
-            <div class="row">
 
-                <div class="col-md-5 col-md-offset-1 item-block animate-box" data-animate-effect="fadeIn">
-                    <h2>Le conseil d'administration</h2>
-                    <ul>
-                        <li>M. Richard TALBOT</li>
-                        <li>M. Thierry SEBELOUE</li>
-                        <li>Mme Jocelyne BARTHELEMY</li>
-                        <li>Mme Mireille ROMAIN</li>
-                        <li>Un représentant de l'ADAPEI</li>
-                        <li>Un représentant du PACT</li>
-                    </ul>
+                <div class="col-md-4 col-md-offset-1">
+                    <img src="{{ asset('images/gestion.png') }}" alt="">
                 </div>
-                <div class="col-md-5 col-md-offset-1 item-block animate-box" data-animate-effect="fadeIn">
-                    <h2>L'équipe</h2>
-                    <ul>
-                        <li>Mme Emilia ABRAHAM, secrétaire aide-comptable</li>
-                        <li>Mme Rachel LINGIBÉ, conseillère en économie sociale et familiale</li>
-                    </ul>
-
-                </div>
-
             </div>
 
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-md-4">
+                    <img src="{{ asset('images/team2.jpg') }}">
+                </div>
+
+                <div class="col-md-6 col-md-offset-2 item-block animate-box" style="margin-top: 40px;"
+                     data-animate-effect="fadeIn">
+                    <h3 class="rubric">L'équipe</h3>
+                    <p>Le conseil d'administration :<br> M. Richard TALBOT, M. Thierry SEBELOUE, Mme Jocelyne BARTHELEMY,
+                        Mme Mireille ROMAIN, Mme Gwenaelle MALLET, <br>un représentant de l'ADAPEI, un représentant de SOliHA
+                    </p>
+
+
+                    <p>L'équipe permanente : <br>Mme Emilia ABRAHAM, secrétaire aide-comptable,<br> Mme Rachel LINGIBÉ, conseillère en économie sociale et familiale</p>
+
+
+
+                </div>
+            </div>
 
         </div>
 

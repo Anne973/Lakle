@@ -1,6 +1,7 @@
 {% extends "base.html.twig" %}
+{% block title %}Logements - {% endblock %}
 {% block content %}
-    <div class="fh5co-page-title" style="background-image: url({{ asset('images/slide_6.jpg') }});">
+    <div class="fh5co-page-title" style="background-image: url({{ asset('images/header.jpeg') }});">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -14,7 +15,7 @@
         <div class="container">
             <div class="row">
 
-                {% for advert in adverts %}
+                {% for advert in listAdverts %}
                 <div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
 
 
@@ -46,20 +47,24 @@
                 <div class="col-md-12 text-center animate-box" data-animate-effect="fadeIn">
                     <nav>
                         <ul class="pagination">
-                            <li class="disabled">
-                                <a href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
+                            {% if page>1 %}
+                                <li>
+                                    <a href="{{ path('nos-logements', {'page': page-1}) }}" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% for p in range(1, nbPages) %}
+                                <li{% if p == page %} class="active"{% endif %}>
+                                    <a href="{{ path('nos-logements', {'page': p}) }}">{{ p }}</a>
+                                </li>
+                            {% endfor %}
                             <li>
-                                <a href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
+                                {% if page< nbPages %}
+                                    <a href="{{ path('nos-logements', {'page': page+1}) }}" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                {% endif %}
                             </li>
                         </ul>
                     </nav>

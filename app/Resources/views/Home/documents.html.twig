@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+{% block title %}Documents - {% endblock %}
+{% block description %}Espace documentaire du site Laklé.{% endblock %}
+{% block content %}
+    <div class="fh5co-page-title" style="background-image: url({{ asset('images/header.jpeg') }});">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 animate-box">
+                    <h1><span class="colored">Espace</span> documentaire</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="fh5co-testimonial">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-10 col-md-offset-1 ">
+                    <h4>Statuts de l'association</h4>
+                    <a href="{{ path('status') }}">Statuts</a>
+                    <hr>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+{% endblock %}
+    {% block javascripts %}
+
+
+    {% endblock %}

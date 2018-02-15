@@ -4,10 +4,12 @@ namespace AppBundle\Controller;
 
 use AppBundle\Form\ContactType;
 use AppBundle\Form\OwnerType;
+use AppBundle\Repository\AdvertRepository;
 use AppBundle\Repository\ArticleRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Swift_Attachment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
@@ -17,11 +19,12 @@ class HomeController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(ArticleRepository $articleRepository)
+    public function indexAction(ArticleRepository $articleRepository, AdvertRepository $advertRepository)
     {
         $lastArticles = $articleRepository->getArticlesInHomepage();
+        $lastAdverts = $advertRepository->getAdvertsInHomepage();
 
-        return $this->render('Home/index.html.twig', array('lastArticles' => $lastArticles));
+        return $this->render('Home/index.html.twig', array('lastArticles' => $lastArticles, 'lastAdverts' => $lastAdverts));
 
     }
 
@@ -103,6 +106,7 @@ class HomeController extends Controller
                     ),
                     'text/html'
                 );
+            /** @var UploadedFile $attachment */
             foreach ($data['attachments'] as $attachment) {
                 $swiftAtt = \Swift_Attachment::fromPath($attachment->getRealPath())
                     ->setFilename($attachment->getClientOriginalName());
@@ -127,6 +131,16 @@ class HomeController extends Controller
     }
 
     /**
+     * @Route("/status", name="status")
+     */
+    public function statusAction()
+    {
+        $pdfPath = $this->getParameter('dir.downloads').'/statuts.pdf';
+
+        return $this->file($pdfPath, 'statut-Laklé',ResponseHeaderBag::DISPOSITION_INLINE);
+    }
+
+    /**
      * @Route("/locataires", name="locataires")
      */
 
@@ -142,6 +156,15 @@ class HomeController extends Controller
     public function legalNoticeAction()
     {
         return $this->render('Home/legalNotice.html.twig');
+    }
+
+    /**
+     * @Route("/documents", name="documents")
+     */
+
+    public function documentsAction()
+    {
+        return $this->render('Home/documents.html.twig');
     }
 
 }

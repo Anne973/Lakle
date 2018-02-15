@@ -1,6 +1,8 @@
 {% extends "base.html.twig" %}
+{% block title %}Formulaire propriétaire - {% endblock %}
+{% block description %}Complétez ce formulaire pour une prise en charge rapide de votre logement par nos services{% endblock %}
 {% block content %}
-    <div class="fh5co-page-title" style="background-image: url({{ asset('images/slide_6.jpg') }});">
+    <div class="fh5co-page-title" style="background-image: url({{ asset('images/header.jpeg') }});">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -10,7 +12,7 @@
             </div>
         </div>
     </div>
-    <div id="best-deal">
+    <div id="fh5co-testimonial">
         <div class="container">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 item-block animate-box" data-animate-effect="fadeIn"
@@ -50,6 +52,11 @@
                                 {{ form_label(form.firstname, "Prénom") }}
                                 {{ form_errors(form.firstname) }}
                                 {{ form_widget(form.firstname, {'attr': {'class':'form-control'}}) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_label(form.phone, "Téléphone") }}
+                                {{ form_errors(form.phone) }}
+                                {{ form_widget(form.phone, {'attr': {'class':'form-control'}}) }}
                             </div>
                             <div class="form-group">
                                 {{ form_label(form.email, "Email") }}
@@ -137,6 +144,13 @@
                     index++;
                 }
 
+                function updateAttachmentLabel(){
+                    $container.find('div label').each(function(index){
+                        $(this).text('Document n°'+(index +1));
+                    })
+
+                }
+
                 // La fonction qui ajoute un lien de suppression d'un document
                 function addDeleteLink($prototype) {
                     // Création du lien
@@ -149,7 +163,8 @@
                     // Ajout du listener sur le clic du lien
                     $deleteLink.click(function (e) {
                         $prototype.remove();
-
+                        index--;
+                        updateAttachmentLabel();
                         e.preventDefault(); // évite qu'un # apparaisse dans l'URL
                         return false;
                     });
