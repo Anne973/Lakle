@@ -240,3 +240,4 @@ liip_imagine:
                 # create a 2px black border: center the thumbnail on a black background
                 # 4px larger to create a 2px border around the final image
                 #background: { size: [244, 184], position: center, color: '#606060' }
+

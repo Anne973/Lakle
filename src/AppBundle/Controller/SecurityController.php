@@ -12,6 +12,7 @@ namespace AppBundle\Controller;
 use AppBundle\Form\ForgotPasswordType;
 use AppBundle\Form\NewPasswordType;
 use AppBundle\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -74,8 +75,8 @@ class SecurityController extends Controller
 
                 $this->get('mailer')->send($message);
                 return $this->redirectToRoute('password_confirmation');
-            } else{
-            $this->get('session')->getFlashBag()->add('info', "Email incorrect");
+            } else {
+                $this->get('session')->getFlashBag()->add('info', "Email incorrect");
             }
         }
         return $this->render('Security/forgotPassword.html.twig', array(
@@ -93,37 +94,24 @@ class SecurityController extends Controller
     }
 
     /**
-     * @Route("/register", name="register")
+     * @Route("/register/{key}", name="register")
      */
-    public function newPasswordAction(Request $request,UserRepository $userRepository)
+    public function newPasswordAction(EntityManagerInterface $em, Request $request, UserRepository $userRepository, $key)
     {
-        $key = $request->query->get('key');
-
         $form = $this->createForm(NewPasswordType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            /*$repository = $this
-                ->getDoctrine()
-                ->getManager()
-                ->getRepository('AppBundle:User');
-            $user=$repository->findOneBy(array('token' => $key));*/
-            $user= $userRepository->getUser($key);
-            if ($data['password'] == $data['passwordbis']){
+            $user = $userRepository->getUser($key);
 
-                $encoded = $this->get('security.password_encoder')->encodePassword($user, $data['password']);
-                $user->setPassword ($encoded);
-                $user->setToken('');
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($user);
-                $em->flush();
-                return $this->redirectToRoute('reset_confirmation');
-            }
-            else{
-                $this->get('session')->getFlashBag()->add('info', "Mot de passe incorrect");
-            }
+            $encoded = $this->get('security.password_encoder')->encodePassword($user, $data['password']);
+            $user->setPassword($encoded);
+            $user->setToken('');
+            $em->flush();
+            return $this->redirectToRoute('reset_confirmation');
         }
+
         return $this->render('Security/newPassword.html.twig', array(
             'form' => $form->createView(),
         ));
@@ -134,7 +122,8 @@ class SecurityController extends Controller
      * @Route("/reset_confirmation", name="reset_confirmation")
      */
 
-    public function resetConfirmationAction()
+    public
+    function resetConfirmationAction()
     {
         return $this->render('Security/resetConfirmation.html.twig');
     }

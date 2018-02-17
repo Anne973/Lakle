@@ -6,8 +6,8 @@
         <div class="easyadmin-vich-file">
             {% if download_uri|default('') is not empty %}
                 {% set download_title = download_uri|split('/')|last ?: 'download'|trans({}, 'VichUploaderBundle') %}
-                <a href="{{ asset(download_uri) }}">{{ download_title }}
-                    <img src="{{ asset(download_uri) }}" alt="">
+                <a href="{{ asset(download_uri) }}">
+                    <img src="{{ asset(download_uri| imagine_filter('my_thumb')) }}" alt="">
                 </a>
             {% endif %}
             <div class="row">

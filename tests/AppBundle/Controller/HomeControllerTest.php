@@ -37,7 +37,6 @@ class HomeControllerTest extends WebTestCase
         yield ['/forgot_password', Response::HTTP_OK];
         yield ['/password_confirmation', Response::HTTP_OK];
         yield ['/register', Response::HTTP_OK];
-        yield ['/register_confirmation', Response::HTTP_OK];
 
 
     }
