@@ -36,11 +36,8 @@
         <header id="fh5co-header" role="banner">
             <div class="container">
                 <div class="row">
-                    <div class="header-inner">
-
-
-
-                      <a href="{{ path ('homepage') }}"><img src="{{ asset('images/logo.jpg') }}" style="position:absolute; left:40px; top:20px;" alt=""></a>
+                    <div class="hidden-xs header-inner">
+                        <a href="{{ path ('homepage') }}"><img src="{{ asset('images/logo.jpg') }}" style="position:absolute; left:40px; top:20px;" alt=""></a>
                         <nav role="navigation">
                             <ul>
                                 <li><a href="{{ path('association') }}">L'association</a></li>
@@ -52,6 +49,21 @@
                             </ul>
                         </nav>
                     </div>
+
+                    <div class="visible-xs header-inner">
+                        <h1 style="margin-top: 0;"><a href="{{ path ('homepage') }}">LAKLE<span>.</span></a></h1>
+                        <nav role="navigation">
+                            <ul>
+                                <li><a href="{{ path('association') }}">L'association</a></li>
+                                <li><a href="{{ path('nos-logements') }}">Nos logements</a></li>
+                                <li><a href="{{ path('proprietaires') }}">Propriétaires</a></li>
+                                <li><a href="{{ path('locataires') }}">Locataires</a></li>
+                                <li><a href="{{ path('actualites') }}">Actualités</a></li>
+                                <li class="cta"><a href="{{ path('contact') }}">Contactez-nous</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
                 </div>
             </div>
         </header>
