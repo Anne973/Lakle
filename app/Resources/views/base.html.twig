@@ -36,8 +36,9 @@
         <header id="fh5co-header" role="banner">
             <div class="container">
                 <div class="row">
-                    <div class="hidden-xs header-inner">
-                        <a href="{{ path ('homepage') }}"><img src="{{ asset('images/logo.jpg') }}" style="position:absolute; left:40px; top:20px;" alt=""></a>
+                    <div class="header-inner">
+                        <a href="{{ path ('homepage') }}" class="hidden-xs"><img src="{{ asset('images/logo.jpg') }}" style="position:absolute; left:40px; top:20px;" alt=""></a>
+                        <h1 class="visible-xs" style="margin-top: 0;"><a href="{{ path ('homepage') }}">LAKLE<span>.</span></a></h1>
                         <nav role="navigation">
                             <ul>
                                 <li><a href="{{ path('association') }}">L'association</a></li>
@@ -50,19 +51,7 @@
                         </nav>
                     </div>
 
-                    <div class="visible-xs header-inner">
-                        <h1 style="margin-top: 0;"><a href="{{ path ('homepage') }}">LAKLE<span>.</span></a></h1>
-                        <nav role="navigation">
-                            <ul>
-                                <li><a href="{{ path('association') }}">L'association</a></li>
-                                <li><a href="{{ path('nos-logements') }}">Nos logements</a></li>
-                                <li><a href="{{ path('proprietaires') }}">Propriétaires</a></li>
-                                <li><a href="{{ path('locataires') }}">Locataires</a></li>
-                                <li><a href="{{ path('actualites') }}">Actualités</a></li>
-                                <li class="cta"><a href="{{ path('contact') }}">Contactez-nous</a></li>
-                            </ul>
-                        </nav>
-                    </div>
+
 
                 </div>
             </div>
@@ -92,7 +81,7 @@
                 </div>
 
 
-                <div class="col-sm-12 fh5co-copyright text-center">
+                <div class="col-xs-12 fh5co-copyright text-center">
                     <p>&copy; 2018 Laklé <span>Designed with <i class="icon-heart"></i> by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a></span></p>
                 </div>
 
