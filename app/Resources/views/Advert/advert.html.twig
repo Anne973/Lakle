@@ -37,10 +37,18 @@
                 </div>
 
 
-                <div class="col-md-6 item-block animate-box" data-animate-effect="fadeIn"
+                <div class="hidden-xs col-md-6 item-block animate-box" data-animate-effect="fadeIn"
                      style="padding: 10px; border: 2px solid #4CB648; border-radius: 10px">
+                    <h4>Type : {{ advert.type }}</h4>
 
+                    <h4>Commune : {{ advert.address }}</h4>
+                    <h4>Loyer hors charges: {{ advert.price }} €</h4>
+                    <h4>Provisions sur charges: {{ advert.charges }} €</h4>
+                    <h4>Frais d'agence: {{ advert.fees }} €</h4>
+                </div>
 
+                <div class="visible-xs col-md-6 item-block animate-box" data-animate-effect="fadeIn"
+                     style="padding: 10px;">
                     <h4>Type : {{ advert.type }}</h4>
 
                     <h4>Commune : {{ advert.address }}</h4>

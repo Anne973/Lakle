@@ -22,28 +22,28 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    public function getArticlesInHomepage(){
+    public function getArticlesInHomepage()
+    {
         $qb = $this->createQueryBuilder('a')
             ->setMaxResults(Article::ARTICLES_IN_HOMEPAGE)
-            ->orderBy('a.id','desc');
+            ->orderBy('a.id', 'desc');
 
         return $qb->getQuery()->getResult();
     }
 
 
-
     public function getArticles($page, $nbPerPage)
     {
 
-        $queryBuilder = $this->createQueryBuilder('a');
+        $queryBuilder = $this->createQueryBuilder('a')
+            ->orderBy('a.id', 'desc');
 
         $query = $queryBuilder->getQuery();
         $query
             // On définit l'annonce à partir de laquelle commencer la liste
-            ->setFirstResult(($page-1) * $nbPerPage)
+            ->setFirstResult(($page - 1) * $nbPerPage)
             // Ainsi que le nombre d'annonce à afficher sur une page
-            ->setMaxResults($nbPerPage)
-        ;
+            ->setMaxResults($nbPerPage);
 
         // Enfin, on retourne l'objet Paginator correspondant à la requête construite
         // (n'oubliez pas le use correspondant en début de fichier)
